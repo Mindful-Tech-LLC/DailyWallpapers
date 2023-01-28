@@ -4,12 +4,7 @@
 #include <chrono>
 #include <string>
 #include <fstream>
-#include <cstdio>
-#include <urlmon.h>
-#include <WinBase.h>
 #include <nlohmann/json.hpp>
-
-#pragma comment(lib, "Urlmon.lib")
 
 using json = nlohmann::json;
 
@@ -20,43 +15,50 @@ const wchar_t* tempDest = L"dailyWall.jpg";
 int OldDate = 0;
 int NewDate = 0;
 
+float timeDelta = 0;
+clock_t clk = clock(), temp;
+
 int main()
 {
     system("color 0E");
     std::cout << "Starting app...\n\nThis console will automatically close in 5 seconds!\n";
-    //Sleep(5000);
-    //::ShowWindow(::GetConsoleWindow(), SW_HIDE);
+    Sleep(5000);
+    ::ShowWindow(::GetConsoleWindow(), SW_HIDE);
 
-    if (S_OK == URLDownloadToFile(NULL, srcUrl, destination, 0, NULL))
+    while (1)
     {
-        std::cout << "Saved to " << destination << "\n\n";
+        if (S_OK == URLDownloadToFile(NULL, srcUrl, destination, 0, NULL))
+        {
+            std::cout << "Saved to " << destination << "\n\n";
+        }
+        else { std::cout << "Failed to acquire file.\n"; }
+
+        std::ifstream f("bDW.json");
+        json data = json::parse(f);
+
+        std::string bingSrc = "https://www.bing.com";
+        std::string cleanedUp;
+        cleanedUp = to_string(data["images"][0]["url"]);
+        cleanedUp.erase(remove(cleanedUp.begin(), cleanedUp.end(), '\"'));
+        bingSrc.append(cleanedUp);
+
+        std::wstring stemp = std::wstring(bingSrc.begin(), bingSrc.end());
+        LPCWSTR sw = stemp.c_str();
+
+        if (S_OK == URLDownloadToFile(NULL, sw, tempDest, 0, NULL))
+        {
+            std::cout << "Saved file to " << tempDest << "\n";
+        }
+        else { std::cout << "Unable to acquire file.\n"; }
+
+        BOOL success = SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, (wchar_t*)"dailyWall.jpg", SPIF_UPDATEINIFILE);
+
+        if (!(success))
+            std::cout << "Failed to set the background!\n";
+        else
+            std::cout << "Background successfully changed!\n";
+
+
+        std::this_thread::sleep_for(std::chrono::minutes(10));
     }
-    else { std::cout << "Failed to acquire file.\n"; }
-
-    std::ifstream f("bDW.json");
-    json data = json::parse(f);
-
-    std::string bingSrc = "https://www.bing.com";
-    std::string cleanedUp;
-    cleanedUp = to_string(data["images"][0]["url"]);
-    cleanedUp.erase(remove(cleanedUp.begin(), cleanedUp.end(), '\"'));
-    bingSrc.append(cleanedUp);
-
-    std::wstring stemp = std::wstring(bingSrc.begin(), bingSrc.end());
-    LPCWSTR sw = stemp.c_str();
-
-    if (S_OK == URLDownloadToFile(NULL, sw, tempDest, 0, NULL))
-    {
-        std::cout << "Saved file to " << tempDest << "\n";
-    }
-    else { std::cout << "Unable to acquire file.\n"; }
-
-    BOOL success = SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, (wchar_t*)"dailyWall.jpg", SPIF_UPDATEINIFILE);
-
-    if (!(success))
-        std::cout << "Failed to set the background!\n";
-    else
-        std::cout << "Background successfully changed!\n";
-
-    system("pause");
 }
