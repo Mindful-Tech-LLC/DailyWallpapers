@@ -12,6 +12,7 @@
 using json = nlohmann::json;
 
 const wchar_t* srcUrl = L"https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US";
+std::string bingUrl = "https://www.bing.com";
 const wchar_t* jsonFile = L"bDW.json";
 const wchar_t* fileName = L"dWall.jpg";
 
@@ -39,13 +40,12 @@ int main()
         std::ifstream f(jsonFile);
         json data = json::parse(f);
 
-        std::string bingSrc = "https://www.bing.com";
         std::string cleanedUp;
         cleanedUp = to_string(data["images"][0]["url"]);
         cleanedUp.erase(remove(cleanedUp.begin(), cleanedUp.end(), '\"'));
-        bingSrc.append(cleanedUp);
+        bingUrl.append(cleanedUp);
 
-        std::wstring stemp = std::wstring(bingSrc.begin(), bingSrc.end());
+        std::wstring stemp = std::wstring(bingUrl.begin(), bingUrl.end());
         LPCWSTR sw = stemp.c_str();
 
         if (S_OK == URLDownloadToFile(NULL, sw, fileName, 0, NULL))
