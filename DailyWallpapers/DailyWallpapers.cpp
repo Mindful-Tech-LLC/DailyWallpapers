@@ -6,7 +6,7 @@
 #include <fstream>
 #include <urlmon.h>
 #include <nlohmann/json.hpp>
-#include <ShObjIdl_core.h>
+
 #pragma comment(lib, "Urlmon.lib")
 
 using json = nlohmann::json;
@@ -29,7 +29,7 @@ int main()
     Sleep(5000);
     //::ShowWindow(::GetConsoleWindow(), SW_HIDE);
 
-    while (1)
+    while (true)
     {
         if (S_OK == URLDownloadToFile(NULL, srcUrl, jsonFile, 0, NULL))
         {
@@ -56,7 +56,7 @@ int main()
         BOOL success = SystemParametersInfoA(SPI_SETDESKWALLPAPER, 0, &fileName, SPIF_UPDATEINIFILE);
         
         if (success)
-            std::cout << "Successfully changed background!";
+            std::cout << "Successfully changed background!\n";
         else
             std::cout << GetLastError();
 
