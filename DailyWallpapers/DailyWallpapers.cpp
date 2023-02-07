@@ -4,13 +4,16 @@
 #include <chrono>
 #include <string>
 #include <fstream>
+#include <urlmon.h>
 #include <nlohmann/json.hpp>
+#include <ShObjIdl_core.h>
+#pragma comment(lib, "Urlmon.lib")
 
 using json = nlohmann::json;
 
 const wchar_t* srcUrl = L"https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US";
-const wchar_t* destination = L"bDW.json";
-const wchar_t* tempDest = L"dailyWall.jpg";
+const wchar_t* jsonFile = L"bDW.json";
+const wchar_t* fileName = L"dWall.jpg";
 
 int OldDate = 0;
 int NewDate = 0;
@@ -21,19 +24,19 @@ clock_t clk = clock(), temp;
 int main()
 {
     system("color 0E");
-    std::cout << "Starting app...\n\nThis console will automatically close in 5 seconds!\n";
+    std::cout << "Starting app...\n\nThis window will automatically close in 5 seconds!\n";
     Sleep(5000);
-    ::ShowWindow(::GetConsoleWindow(), SW_HIDE);
+    //::ShowWindow(::GetConsoleWindow(), SW_HIDE);
 
     while (1)
     {
-        if (S_OK == URLDownloadToFile(NULL, srcUrl, destination, 0, NULL))
+        if (S_OK == URLDownloadToFile(NULL, srcUrl, jsonFile, 0, NULL))
         {
-            std::cout << "Saved to " << destination << "\n\n";
+            std::cout << "Saved to " << jsonFile << "\n\n";
         }
         else { std::cout << "Failed to acquire file.\n"; }
 
-        std::ifstream f("bDW.json");
+        std::ifstream f(jsonFile);
         json data = json::parse(f);
 
         std::string bingSrc = "https://www.bing.com";
@@ -45,19 +48,17 @@ int main()
         std::wstring stemp = std::wstring(bingSrc.begin(), bingSrc.end());
         LPCWSTR sw = stemp.c_str();
 
-        if (S_OK == URLDownloadToFile(NULL, sw, tempDest, 0, NULL))
-        {
-            std::cout << "Saved file to " << tempDest << "\n";
-        }
-        else { std::cout << "Unable to acquire file.\n"; }
-
-        BOOL success = SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, (wchar_t*)"dailyWall.jpg", SPIF_UPDATEINIFILE);
-
-        if (!(success))
-            std::cout << "Failed to set the background!\n";
+        if (S_OK == URLDownloadToFile(NULL, sw, fileName, 0, NULL))
+            std::cout << "Saved file to " << fileName << "\n";
         else
-            std::cout << "Background successfully changed!\n";
+            std::cout << "Unable to acquire file.\n";
 
+        BOOL success = SystemParametersInfoA(SPI_SETDESKWALLPAPER, 0, &fileName, SPIF_UPDATEINIFILE);
+        
+        if (success)
+            std::cout << "Successfully changed background!";
+        else
+            std::cout << GetLastError();
 
         std::this_thread::sleep_for(std::chrono::minutes(10));
     }
