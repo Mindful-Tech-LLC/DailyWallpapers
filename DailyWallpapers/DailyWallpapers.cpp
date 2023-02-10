@@ -14,7 +14,7 @@ using json = nlohmann::json;
 const wchar_t* srcUrl = L"https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US";
 std::string bingUrl = "https://www.bing.com";
 const wchar_t* jsonFile = L"bDW.json";
-const wchar_t* fileName = L"dWall.jpg";
+const wchar_t* fileName = L"dWall.png";
 
 int OldDate = 0;
 int NewDate = 0;
@@ -55,10 +55,10 @@ int main()
 
         BOOL success = SystemParametersInfoA(SPI_SETDESKWALLPAPER, 0, &fileName, SPIF_UPDATEINIFILE);
         
-        if (success)
-            std::cout << "Successfully changed background!\n";
-        else
+        if (!success)
             std::cout << GetLastError();
+        else
+            std::cout << "Successfully changed background!\n";
 
         std::this_thread::sleep_for(std::chrono::minutes(10));
     }
