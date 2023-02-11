@@ -16,12 +16,6 @@ std::string bingUrl = "https://www.bing.com";
 const wchar_t* jsonFile = L"C:\\bDW.json";
 const wchar_t* fileName = L"C:\\dWall.png";
 
-int OldDate = 0;
-int NewDate = 0;
-
-float timeDelta = 0;
-clock_t clk = clock(), temp;
-
 int main()
 {
     system("color 0E");
