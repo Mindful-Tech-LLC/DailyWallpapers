@@ -29,7 +29,7 @@ If you'd like, move the `DailyWallpapers` folder to your `C:/` drive or your des
 
 <img src="./shtcut.png" />
 
-To add it to startup, press `Windows Key` + `R`, then type `shell:startup`.
+To add it to startup, press `Windows Key` + `R`, then type `shell:startup`. Drag and drop the shortcut you made into the startup folder.
 
 <img src="./strtup.png" />
 
