@@ -41,6 +41,6 @@ To add it to startup, press `Windows Key` + `R`, then type `shell:startup`. Drag
 And that's it! You've downloaded and set the app to run on startup.
 
 
-## Info
+## Info 
 
-There might be a chance that the Windows Anti-Virus deletes the file under the false threat of 'Trojan' virus. I assure you the program does nothing harmful, as you can see from the code in the <a href="https://github.com/aisyshk/DailyWallpapers/tree/master">master branch</a>.
+⚠️ There might be a chance that the Windows Anti-Virus deletes the file under the false threat of 'Trojan' virus. I assure you the program does nothing harmful, as you can see from the code in the <a href="https://github.com/aisyshk/DailyWallpapers/tree/master">master branch</a>.
