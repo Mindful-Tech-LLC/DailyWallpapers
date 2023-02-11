@@ -18,8 +18,7 @@ Simple and easy installation. Head over to <a href="https://github.com/aisyshk/D
 
 Once downloaded, unzip the `DailyWallpapers-xxxx.x.xx.zip`, open it until you reach the folder with the `.exe`
 
-<img src="./dl1.png" />
-<img src="./dl2.png" />
+<img src="./dl1.png" /> <img src="./dl2.png" />
 
 
 
