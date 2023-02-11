@@ -13,8 +13,8 @@ using json = nlohmann::json;
 
 const wchar_t* srcUrl = L"https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US";
 std::string bingUrl = "https://www.bing.com";
-const wchar_t* jsonFile = L"bDW.json";
-const wchar_t* fileName = L"dWall.png";
+const wchar_t* jsonFile = L"C:\\bDW.json";
+const wchar_t* fileName = L"C:\\dWall.png";
 
 int OldDate = 0;
 int NewDate = 0;
@@ -25,17 +25,19 @@ clock_t clk = clock(), temp;
 int main()
 {
     system("color 0E");
-    std::cout << "Starting app...\n\nThis window will automatically close in 5 seconds!\n";
+    system("title Daily Wallpapers");
+    std::cout << "Starting app...\nThis window will automatically close in 5 seconds!\n";
     Sleep(5000);
-    //::ShowWindow(::GetConsoleWindow(), SW_HIDE);
+    ::ShowWindow(::GetConsoleWindow(), SW_HIDE);
 
-    while (true)
-    {
+    do {
         if (S_OK == URLDownloadToFile(NULL, srcUrl, jsonFile, 0, NULL))
         {
             std::cout << "Saved to " << jsonFile << "\n\n";
         }
         else { std::cout << "Failed to acquire file.\n"; }
+
+        Sleep(1000);
 
         std::ifstream f(jsonFile);
         json data = json::parse(f);
@@ -53,13 +55,15 @@ int main()
         else
             std::cout << "Unable to acquire file.\n";
 
-        BOOL success = SystemParametersInfoA(SPI_SETDESKWALLPAPER, 0, &fileName, SPIF_UPDATEINIFILE);
-        
+        Sleep(1000);
+
+        BOOL success = SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, (void*)fileName, SPIF_UPDATEINIFILE);
+
         if (!success)
             std::cout << GetLastError();
         else
             std::cout << "Successfully changed background!\n";
 
-        std::this_thread::sleep_for(std::chrono::minutes(10));
-    }
+        std::this_thread::sleep_for(std::chrono::hours(1));
+    } while (true);
 }
