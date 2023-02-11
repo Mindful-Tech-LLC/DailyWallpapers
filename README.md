@@ -1,5 +1,5 @@
 # DailyWallpapers
-![](dailyWallpapersIcon.png)
+<img src="dailyWallpapersIcon.png" style="width: 50px; height: 50px;">
 
 Console application that checks Bing's api for new daily images, and sets them as desktop wallpapers.
 
