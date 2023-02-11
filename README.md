@@ -7,6 +7,7 @@ Console application that checks Bing's api for new daily images, and sets them a
 
 1. [How To Install](#how-to-install)
 2. [Adding to Startup](#adding-to-startup)
+3. [Info](#info)
 
 
 ## How To Install
@@ -34,3 +35,8 @@ To add it to startup, press `Windows Key` + `R`, then type `shell:startup`. Drag
 <img src="./strtup.png" />
 
 And that's it! You've downloaded and set the app to run on startup.
+
+
+## Info
+
+There might be a chance that the Windows Anti-Virus deletes the file under the false threat of 'Trojan' virus. I assure you the program does nothing harmful, as you can see from the code in the <a href="https://github.com/aisyshk/DailyWallpapers/tree/master">master branch</a>.
