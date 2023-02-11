@@ -1,3 +1,4 @@
+![](dailyWallpapersIcon.png)
 # DailyWallpapers
 
 Console application that checks Bing's api for new daily images, and sets them as desktop wallpapers.
