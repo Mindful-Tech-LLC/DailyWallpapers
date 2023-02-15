@@ -38,7 +38,13 @@ To add it to startup, press `Windows Key` + `R`, then type `shell:startup`. Drag
 
 <img src="./strtup.png" />
 
-And that's it! You've downloaded and set the app to run on startup.
+Before launching the app, set it to run as administrator. To do that, right click the `.exe`, click `Properties` then head over to `Compatibility` and tick `Run this program as an administrator`
+
+<img src="./propMenu.png" />
+
+<img src="./compMenu.png" />
+
+And that's it! You've downloaded and set the app to run on startup
 
 
 ### Info 
