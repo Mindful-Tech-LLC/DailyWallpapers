@@ -44,6 +44,8 @@ Before launching the app, set it to run as administrator. To do that, right clic
 
 <img src="./compMenu.png" />
 
+**Why do I need to launch it as admin?** This allows the app to download and set your wallpaper without any errors, such as missing permission to download or set wallpaper.
+
 And that's it! You've downloaded and set the app to run on startup
 
 
