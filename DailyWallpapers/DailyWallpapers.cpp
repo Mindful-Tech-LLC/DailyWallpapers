@@ -21,7 +21,7 @@ int main()
 {
     system("color 0E");
     system("title Daily Wallpapers");
-    std::cout << "Starting app...\nThis window will automatically close in 5 seconds!\n";
+    std::cout << "Starting app... This window will close in 5 seconds!\nYou can find it with Task Manager!\n";
     Sleep(5000);
     ::ShowWindow(::GetConsoleWindow(), SW_HIDE);
 
@@ -32,9 +32,9 @@ int main()
             {
                 std::cout << "Saved to " << jsonFile << "\n\n";
             }
-            else { std::cout << "Failed to acquire file.\n"; }
+            else { std::cerr << "Failed to acquire file.\n"; }
 
-            Sleep(1000);
+            Sleep(500);
 
             std::ifstream f(jsonFile);
             json data = json::parse(f);
@@ -50,22 +50,27 @@ int main()
             if (S_OK == URLDownloadToFile(NULL, sw, fileName, 0, NULL))
                 std::cout << "Saved file to " << fileName << "\n";
             else
-                std::cout << "Unable to acquire file.\n";
+                std::cerr << "Unable to acquire file.\n";
 
-            Sleep(1000);
+            Sleep(500);
 
             BOOL success = SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, (void*)fileName, SPIF_UPDATEINIFILE);
 
             if (!success)
                 std::cout << GetLastError();
             else
-                std::cout << "Successfully changed background!\n";
+            {
+                std::cout << "Successfully changed background!\nCleaning up..\n";
+                std::remove("C:\\bDW.json");
+                std::cout << "Finished!\n";
+            }
 
             std::this_thread::sleep_for(std::chrono::hours(1));
         }
         catch (std::exception e)
         {
             std::cerr << e.what();
+            //::ShowWindow(::GetConsoleWindow(), SW_HIDE); // Show on error
         }
     } while (true);
 }
