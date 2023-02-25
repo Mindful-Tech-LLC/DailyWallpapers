@@ -13,6 +13,7 @@ Console application that checks Bing's api for new daily images, and sets them a
 2. [Adding to Startup](#adding-to-startup)
 3. [Info](#info)
 
+<hr>
 
 ### How To Install
 
@@ -25,7 +26,7 @@ Once downloaded, unzip the `DailyWallpapers-xxxx.x.xx.zip`, open it until you re
 
 <img src="./docs/dl1.png" /> <img src="./docs/dl2.png" />
 
-
+<hr>
 
 ### Adding to Startup
 
@@ -48,6 +49,7 @@ Before launching the app, set it to run as administrator. To do that, right clic
 
 And that's it! You've downloaded and set the app to run on startup
 
+<hr>
 
 ### Info 
 
