@@ -70,7 +70,6 @@ int main()
         catch (std::exception e)
         {
             std::cerr << e.what();
-            //::ShowWindow(::GetConsoleWindow(), SW_HIDE); // Show on error
         }
     } while (true);
 }
