@@ -1,4 +1,4 @@
-# DailyWallpapers
+# DailyWallpapers <img src="dailyWallpapersIcon.png" style="width: 50px; height: 50px;">
 
 Console application that checks Bing's api for new daily images, and sets them as desktop wallpapers.
 
@@ -38,7 +38,15 @@ To add it to startup, press `Windows Key` + `R`, then type `shell:startup`. Drag
 
 <img src="./strtup.png" />
 
-And that's it! You've downloaded and set the app to run on startup.
+Before launching the app, set it to run as administrator. To do that, right click the `.exe`, click `Properties` then head over to `Compatibility` and tick `Run this program as an administrator`
+
+<img src="./propMenu.png" />
+
+<img src="./compMenu.png" />
+
+**Why do I need to launch it as admin?** This allows the app to download and set your wallpaper without any errors, such as missing permission to download or set wallpaper.
+
+And that's it! You've downloaded and set the app to run on startup
 
 
 ### Info 
