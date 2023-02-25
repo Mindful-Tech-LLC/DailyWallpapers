@@ -18,12 +18,12 @@ Console application that checks Bing's api for new daily images, and sets them a
 
 Simple and easy installation. Head over to <a href="https://github.com/aisyshk/DailyWallpapers/releases/latest">the latest release</a> and download the `Source code (zip)`.
 
-<img src="./srccd.png" />
+<img src="./docs/srccd.png" />
 
 
 Once downloaded, unzip the `DailyWallpapers-xxxx.x.xx.zip`, open it until you reach the folder with the `.exe`
 
-<img src="./dl1.png" /> <img src="./dl2.png" />
+<img src="./docs/dl1.png" /> <img src="./docs/dl2.png" />
 
 
 
@@ -32,17 +32,17 @@ Once downloaded, unzip the `DailyWallpapers-xxxx.x.xx.zip`, open it until you re
 
 If you'd like, move the `DailyWallpapers` folder to your `C:/` drive or your desktop. Open the folder with the `.exe` and create a shortcut to the `.exe`.
 
-<img src="./shtcut.png" />
+<img src="./docs/shtcut.png" />
 
 To add it to startup, press `Windows Key` + `R`, then type `shell:startup`. Drag and drop the shortcut you made into the startup folder.
 
-<img src="./strtup.png" />
+<img src="./docs/strtup.png" />
 
 Before launching the app, set it to run as administrator. To do that, right click the `.exe`, click `Properties` then head over to `Compatibility` and tick `Run this program as an administrator`
 
-<img src="./propMenu.png" />
+<img src="./docs/propMenu.png" />
 
-<img src="./compMenu.png" />
+<img src="./docs/compMenu.png" />
 
 **Why do I need to launch it as admin?** This allows the app to download and set your wallpaper without any errors, such as missing permission to download or set wallpaper.
 
