@@ -57,7 +57,7 @@ int main()
             BOOL success = SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, (void*)fileName, SPIF_UPDATEINIFILE);
 
             if (!success)
-                std::cout << GetLastError();
+                std::cerr << GetLastError();
             else
             {
                 std::cout << "Successfully changed background!\nCleaning up..\n";
