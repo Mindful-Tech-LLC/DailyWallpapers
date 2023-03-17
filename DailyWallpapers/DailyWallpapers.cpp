@@ -34,7 +34,7 @@ int main()
             }
             else { std::cerr << "Failed to acquire file.\n"; }
 
-            Sleep(500);
+            Sleep(250);
 
             std::ifstream f(jsonFile);
             json data = json::parse(f);
@@ -52,18 +52,20 @@ int main()
             else
                 std::cerr << "Unable to acquire file.\n";
 
-            Sleep(500);
+            Sleep(250);
 
             BOOL success = SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, (void*)fileName, SPIF_UPDATEINIFILE);
 
             if (!success)
-                std::cerr << GetLastError();
-            else
             {
-                std::cout << "Successfully changed background!\nCleaning up..\n";
-                std::remove("C:\\bDW.json");
-                std::cout << "Finished!\n";
+                std::cerr << GetLastError();
+                return;
             }
+
+            std::cout << "Successfully changed background!\nCleaning up..\n";
+            std::remove("C:\\bDw.json");
+            std::remove("C:\\dWall.png");
+            std::cout << "Finished!\n";
 
             std::this_thread::sleep_for(std::chrono::hours(1));
         }
